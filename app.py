@@ -37,7 +37,7 @@ def index():
     token = session.get("user_token")
     user = get_user_info(token["access_token"])
     # Get user name
-    username = user["username"]
+    session["username"] = user["username"]
 
     # Get user avatar
     if user["avatar"]:
@@ -46,18 +46,17 @@ def index():
         defaultAvatarIndex = (int(user["id"]) >> 22) % 6
         avatar_url = f"https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png"
 
-    return render_template("index.html", username=username, avatar_url=avatar_url)
+    session["avatar_url"] = avatar_url
+
+    return render_template("index.html", username=session.get("username"), avatar_url=session.get("avatar_url"))
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
     """Log user in"""
-
     session.clear()
 
     if request.method == "POST":
-
         discord_url = (
             f"https://discord.com/oauth2/authorize?client_id={MY_CLIENT_ID}"
             f"&permissions=8"
@@ -66,10 +65,14 @@ def login():
             f"&integration_type=0&scope=bot+guilds+identify"
         )
         return redirect(discord_url)
-    
 
     else:
         return render_template("login.html")
+    
+    
+@app.errorhandler(404)
+def page_not_found(e):
+    return apology("Looks like page not found", 404)
 
 
 @app.route("/callback")
@@ -94,13 +97,22 @@ def exchange_code(code, redirect_uri):
         headers=headers,
         auth=(MY_CLIENT_ID, MY_CLIENT_SECRET)
     )
-    r.raise_for_status()
+
+    try:
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        apology("HTTP error occurred", 400)
+    except requests.exceptions.RequestException as e:
+        apology("A request error occurred", 400)
+
     return r.json()
 
 def get_user_info(access_token):
     headers = {'Authorization': f'Bearer {access_token}'}
     r = requests.get('https://discord.com/api/v10/users/@me', headers=headers)
     return r.json()
+
+
 
 if __name__ == '__main__':  
     app.run()
