@@ -1,7 +1,187 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --btn-sm-wdith: clamp(75px, 8.9vw, 200px);
+    --btn-lg-width: clamp(100px, 23.2vw, 400px);
+    --btn-xl-width: clamp(120px, 29.3vw, 500px);
+    --btn-xl-height: clamp(60px, 10.8vh, 250px);
+    --flash-card-text-width: clamp(90px, 60vw + 1rem, 1536px);
+    --flash-card-text-height: clamp(60px, 28.7vh + 1rem, 500px);
+    --color-primary-button: linear-gradient(to bottom right, #f00, #0df);
+    --color-decor-grad-bottom-right: linear-gradient(to top left, #00DDFF, transparent);
+    --color-decor-grad-bottom-left: linear-gradient(to top right, #f00, transparent);
+    --color-decor-grad-top-left: linear-gradient(to bottom right, #f00, transparent);
+    --decor-grad-width-height: 200px;
+    --primary-color: #2C2C2C;
+    --secondary-color: #4A4A4A;
+    --primary-accent-color: #f00;
+    --secondary-accent-color: #0df;
+    --color-page-bg: #000;
+    --color-text: #fff;
 }
 
+body {
+    background-color: var(--color-page-bg);
+    color: var(--color-text);
+    font-family: "Outfit", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
 
+p, h1 {
+    margin: 0;
+}
+
+/* Background Decorative Gradients */
+.decor-grad-top-left, 
+.decor-grad-bottom-left, 
+.decor-grad-bottom-right {
+    width: var(--decor-grad-width-height);
+    height: var(--decor-grad-width-height);
+    position: absolute;
+    filter: blur(125px);
+    z-index: 5;
+}
+
+.decor-grad-top-left {
+    background: var(--color-decor-grad-top-left);
+    border-bottom-right-radius: 50%;
+    top: 0;
+    left: 0;
+}
+
+.decor-grad-bottom-left {
+    background: var(--color-decor-grad-bottom-left);
+    border-top-right-radius: 50%;
+    bottom: 0;
+    left: 0;
+}
+
+.decor-grad-bottom-right {
+    background: var(--color-decor-grad-bottom-right);
+    border-top-left-radius: 50%;
+    bottom: 0;
+    right: 0;
+}
+
+/* Colors */
+.color-primary-accent {
+    color: var(--primary-accent-color);
+}
+
+.color-secondary-accent {
+    color: var(--secondary-accent-color);
+}
+
+/* Background Colors */
+.bg-primary-color {
+    background-color: var(--primary-color);
+}
+
+/* Containers */
+.landing-container {
+    height: 100vh;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.signup-popup-container {
+    width: var(--signup-popup-width);
+    height: var(--signup-popup-height);
+    border-radius: 50px;
+}
+
+/* Buttons */
+.primary-btn {
+    border: none;
+    color: var(--color-text);
+    background: var(--color-primary-button);
+}
+
+.secondary-btn {
+    border: solid 2px var(--color-text);
+    color: var(--color-text);
+    background: transparent;
+}
+
+.tertiary-btn {
+    border: none;
+    color: var(--color-text);
+    background: var(--primary-color);
+}
+
+/* Button Size */
+.custom-btn-sm {
+    height: 60px;
+    width: var(--btn-sm-wdith);
+    border-radius: 100px;
+}
+
+.custom-btn-lg {
+    height: 60px;
+    width: var(--btn-lg-width);
+    border-radius: 100px;
+}
+
+.custom-btn-xl {
+    height: var(--btn-xl-height);
+    width: var(--btn-xl-width);
+    border-radius: 100px;
+}
+
+/* Stadium */
+.primary-stadium {
+    box-shadow: inset #7c7c7c 0px 0px 50px;
+    border: none;
+    background: transparent;
+}
+
+/* Stadium Size */
+.stadium-lg {
+    height: 60px;
+    width: var(--btn-lg-width);
+    border-radius: 20px;
+}
+
+/* Text Styles */
+.title-hero {
+    width: 80vw;
+}
+
+.subtitle {
+    width: 60vw;
+}
+
+/* Profile Picture */
+.profile-picture {
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
+}
+
+/* Blur Background */
+.bg-blur-small {
+    filter: blur(25px);
+}
+
+/* Responsive Design */
+
+  @media (max-width: 400px) {
+    .blurred-circle-red-top {
+        width: 80vw;
+        height: 60vh;
+        filter: blur(20vw);
+    }
+
+    .blurred-circle-red-bottom {
+        width: 80vw;
+        height: 60vh;
+        filter: blur(20vw);
+    }
+
+    .blurred-circle-cyan {
+        width: 80vw;
+        height: 60vh;
+        filter: blur(20vw);
+    }
+  }
