@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    servers
+{% endblock %}
+
+{% block main %}
+   
+    <!-- Background Blurred Circles -->
+    <div class="decor-grad-top-left"></div>
+    <div class="decor-grad-bottom-right"></div>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center server-list">
+        {% for guild in guilds %}
+                <div class="guild-box">
+                    {% if guild['icon'] %}
+                        <img class="guild-icon" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png?size=128" alt="{{ guild['name'] }} - Icon">
+                    {% else %}
+                        <img class="guild-icon" src="/static/imgs/discord.png" alt="{{ guild['name'] }} - Icon">
+                    {% endif %}
+                        <h5 class="">{{ guild['name'] }}</h5>
+                        <a href="/manage?id={{ guild['id'] }}" class="btn btn-primary">Manage</a>
+                </div>
+        {% endfor %}
+    </div>
+    
+    
+{% endblock %}

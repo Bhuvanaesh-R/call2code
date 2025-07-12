@@ -6,6 +6,15 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 
+def genserver(id):
+    r = requests.post(f"https://discord.com/api/v10/guilds/{id}/channels" \
+        f"?name={0}" \
+        f"&type=0")
+    
+    print(r)
+        
+
+
 def genimage(top, bottom):
     image_width = 2880
     image_height = 1800
@@ -84,7 +93,7 @@ def apology(message, code=400):
         return s
     
     genimage(f"{code}", escape(message))
-    return render_template("apology.html", top=code, bottom=escape(message), username=session.get("username"), avatar_url=session.get("avatar_url")), code
+    return render_template("apology.html", top=code, bottom=escape(message)), code
 
 
 def login_required(f):
@@ -103,3 +112,6 @@ def login_required(f):
     return decorated_function
 
 
+
+if __name__ == "__main__":
+    genserver(1390665340186398740)

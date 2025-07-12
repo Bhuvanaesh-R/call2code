@@ -3,8 +3,6 @@
     --btn-lg-width: clamp(100px, 23.2vw, 400px);
     --btn-xl-width: clamp(120px, 29.3vw, 500px);
     --btn-xl-height: clamp(60px, 10.8vh, 250px);
-    --flash-card-text-width: clamp(90px, 60vw + 1rem, 1536px);
-    --flash-card-text-height: clamp(60px, 28.7vh + 1rem, 500px);
     --color-primary-button: linear-gradient(to bottom right, #f00, #0df);
     --color-decor-grad-bottom-right: linear-gradient(to top left, #00DDFF, transparent);
     --color-decor-grad-bottom-left: linear-gradient(to top right, #f00, transparent);
@@ -18,16 +16,17 @@
     --color-text: #fff;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    color: var(--color-text);
     font-family: "Outfit", serif;
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
-}
-
-p, h1 {
-    margin: 0;
 }
 
 /* Background Decorative Gradients */
@@ -74,20 +73,6 @@ p, h1 {
 /* Background Colors */
 .bg-primary-color {
     background-color: var(--primary-color);
-}
-
-/* Containers */
-.landing-container {
-    height: 100vh;
-    width: 80vw;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.signup-popup-container {
-    width: var(--signup-popup-width);
-    height: var(--signup-popup-height);
-    border-radius: 50px;
 }
 
 /* Buttons */
@@ -151,12 +136,6 @@ p, h1 {
     width: 60vw;
 }
 
-/* Profile Picture */
-.profile-picture {
-    height: 60px;
-    width: 60px;
-    border-radius: 100px;
-}
 
 /* Blur Background */
 .bg-blur-small {
@@ -188,16 +167,16 @@ p, h1 {
 /* Nav Bar */
 
 .navbar {
-    border-radius: 30px;
-    max-width: 60%;
     position: sticky;
+    top: 2rem;
+    max-width: 60%;
     z-index: 1;
     background: linear-gradient(135deg, var(--bs-body-color), var(--bs-body-colorg)),
     linear-gradient(to top left, var(--bs-body-color), transparent);
     background-blend-mode: overlay;
-    border: 2px solid;
+    border: 2px solid var(--bs-body-color);
     border-radius: 30px;
-    margin: 2rem auto;
+    margin: 2rem auto 7.5rem auto;
     padding: 0.3rem;
     box-shadow: 0 0 20px var(--bs-body-color);
     background-color: var(--bs-body-bg);
@@ -214,14 +193,18 @@ p, h1 {
     border-radius: 30px;
 }
 
+.guild-icon {
+    width: 128px;
+    height: auto;
+    border-radius: 25px;
+}
+
 .apology-pic {
     border-radius: 25px;
     margin: 2rem auto;
     width: 70%;
     height: auto;
 }
-
-
 
 
 .dropdown-item-danger {
@@ -283,6 +266,16 @@ p, h1 {
   fill: currentColor;
 }
 
+#logout {
+    fill: red;
+    width: 1rem;
+    height: 1rem;
+}
+
+#logout:hover {
+    opacity: 1;
+}
+
 .nav-scroller {
   position: relative;
   z-index: 2;
@@ -328,4 +321,28 @@ p, h1 {
 
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
+}
+
+
+/* server-list */
+.server-list {
+    gap: 1rem;
+}
+
+.card {
+    padding: 1rem;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-title {
+    margin: 1.5rem;
+}
+
+.guild-box {
+    padding: 0.5rem;
+    border: 2px solid var(--bs-body-color);
 }
