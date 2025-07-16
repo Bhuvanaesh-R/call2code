@@ -12,7 +12,7 @@
 
     <div class="d-flex flex-wrap justify-content-center align-items-center server-list">
         {% for guild in guilds %}
-                <div class="guild-box">
+                <div class="card">
                     {% if guild['icon'] %}
                         <img class="guild-icon" src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png?size=128" alt="{{ guild['name'] }} - Icon">
                     {% else %}

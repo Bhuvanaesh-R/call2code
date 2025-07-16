@@ -22,6 +22,11 @@
     box-sizing: border-box;
 }
 
+p {
+    margin: 0;
+    vertical-align: middle;
+}
+
 body {
     font-family: "Outfit", serif;
     font-optical-sizing: auto;
@@ -176,7 +181,7 @@ body {
     background-blend-mode: overlay;
     border: 2px solid var(--bs-body-color);
     border-radius: 30px;
-    margin: 2rem auto 7.5rem auto;
+    margin: 2rem auto 4rem auto;
     padding: 0.3rem;
     box-shadow: 0 0 20px var(--bs-body-color);
     background-color: var(--bs-body-bg);
@@ -264,6 +269,8 @@ body {
 .bi {
   vertical-align: -0.125em;
   fill: currentColor;
+  width: 1rem;
+  height: 1rem;
 }
 
 #logout {
@@ -345,4 +352,66 @@ body {
 .guild-box {
     padding: 0.5rem;
     border: 2px solid var(--bs-body-color);
+}
+
+/* manage */
+
+.module {
+    border: 1px solid var(--bs-body-color);
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+.module-expanded {
+    width: 100%;
+    padding: 2rem;
+}
+
+#category-list, #channel-list, #permission-list {
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    width: 100%;
+    border: 1px solid var(--bs-body-color);
+    border-radius: 25px;
+}
+
+.categories, .channels {
+    margin: 0.25rem;
+}
+
+#noofcategory, #categoryname, #noofchannel, #channelname {
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--bs-body-color);
+    color: var(--bs-body-color);
+    border-radius: 5px;
+    padding: 0.2rem;
+}
+
+
+/* Responsive Design */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }

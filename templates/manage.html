@@ -10,7 +10,65 @@
     <div class="decor-grad-top-left"></div>
     <div class="decor-grad-bottom-right"></div>
 
-    <div class="d-flex flex-wrap justify-content-center align-items-center">
+    <div class="d-flex flex-wrap justify-content-center align-items-center mb-4">
+        <div class="module d-flex flex-row" id="server-gen-module">
+            <p class="d-flex justify-content-center align-items-center text-center">Server Channel Generation</p>
+            <div class="btn btn-module">
+                <svg class="bi">
+                    <use href="#caret-right-fill"></use>
+                </svg>
+            </div>
+            <div class="d-none">
+                <div class="my-3">
+                    <label class="d-inline" for="noofcategory">No of Category to be added (1-50): </label>
+                    <input id="noofcategory" type="number" min="1" max="50">
+                    <div class="btn btn-outline-secondary" id="btn-reveal-category-list">Next</div>
+                </div>
+
+                <p>Choose One Category to customize: </p>
+                <div class="d-flex" id="category-list">
+                    <p>None</p>
+                </div>
+
+                <div>
+                    <label class="d-inline" for="categoryname">Change Name of Selected Category: </label>
+                    <input id="categoryname" type="text" maxlength="100">
+                    <div class="btn btn-outline-secondary disabled" id="btn-category-name">Next</div>
+                </div>
+                
+
+                <div class="my-3">
+                    <label class="d-inline" id="label-noofchannel" for="noofchannel">No of Channel to be added (0 out of 500 Used): </label>
+                    <input id="noofchannel" type="number">
+                    <div class="btn btn-outline-secondary disabled" id="btn-reveal-channel-list">Next</div>
+                </div>
+
+                <p>Choose One Channel to customize: </p>
+                <div class="d-flex" id="channel-list">
+                    <p>None</p>
+                </div>
+
+                <div>
+                    <label class="d-inline" for="channelname">Change Name of Selected Channel: </label>
+                    <input id="channelname" type="text" maxlength="100">
+                    <div class="btn btn-outline-secondary disabled" id="btn-channel-name">Next</div>
+                </div>
+
+                <p>Select Permissions to apply: </p>
+                <div class="d-flex" id="permission-list">
+                    <p>None</p>
+                </div>
+
+                <div class="mt-4 server-gen-confirmation">
+                    <div class="btn">
+                        Cancel
+                    </div>
+                    <button class="btn disabled">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
     
     

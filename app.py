@@ -94,10 +94,13 @@ def message():
 @login_required
 def manage():
     guild_id = request.args.get("id")
+    server_gen_data = request.args.get('sg')
+    
 
     if guild_id == None:
         return apology("Missing Guild Id", 400)
     
+
 
     '''json_data = {
         "name": "0",
@@ -105,6 +108,8 @@ def manage():
     }
 
     getorpost_info(f"/guilds/{guild_id}/channels", 1, json=json_data, bot=True)'''
+
+
     
     return render_template("manage.html")
 

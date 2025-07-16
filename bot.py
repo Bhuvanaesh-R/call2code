@@ -26,6 +26,10 @@ async def message(title, description, color, thumbnail, channel):
     channel.send(embed=myEmbed)
 
 
+
+
+
+
 def get_channels(id):
     ch = []
     for guild in Client.guilds:
