@@ -33,14 +33,14 @@
                 <div>
                     <label class="d-inline" for="categoryname">Change Name of Selected Category: </label>
                     <input id="categoryname" type="text" maxlength="100">
-                    <div class="btn btn-outline-secondary disabled" id="btn-category-name">Next</div>
+                    <div class="btn btn-outline-secondary" id="btn-category-name">Next</div>
                 </div>
                 
 
                 <div class="my-3">
                     <label class="d-inline" id="label-noofchannel" for="noofchannel">No of Channel to be added (0 out of 500 Used): </label>
                     <input id="noofchannel" type="number">
-                    <div class="btn btn-outline-secondary disabled" id="btn-reveal-channel-list">Next</div>
+                    <div class="btn btn-outline-secondary" id="btn-reveal-channel-list">Next</div>
                 </div>
 
                 <p>Choose One Channel to customize: </p>
@@ -48,10 +48,18 @@
                     <p>None</p>
                 </div>
 
-                <div>
+                <div class="mb-3">
                     <label class="d-inline" for="channelname">Change Name of Selected Channel: </label>
                     <input id="channelname" type="text" maxlength="100">
-                    <div class="btn btn-outline-secondary disabled" id="btn-channel-name">Next</div>
+                    <div class="btn btn-outline-secondary" id="btn-channel-name">Next</div>
+                    <br>
+                    <label for="channel-type">Channel Type:</label>
+                    <br>
+                    <label for="channel-type">Text Channel</label>
+                    <input class="form-check-input" type="radio" name="channel-type" value="text-channel" id="text-channel" checked>
+                    <br>
+                    <label for="channel-type">Voice Channel</label>
+                    <input class="form-check-input" type="radio" name="channel-type" value="voice-channel" id="voice-channel">
                 </div>
 
                 <p>Select Permissions to apply: </p>
