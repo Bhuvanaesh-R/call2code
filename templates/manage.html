@@ -27,7 +27,6 @@
 
                 <p>Choose One Category to customize: </p>
                 <div class="d-flex" id="category-list">
-                    <p>None</p>
                 </div>
 
                 <div>
@@ -45,7 +44,6 @@
 
                 <p>Choose One Channel to customize: </p>
                 <div class="d-flex" id="channel-list">
-                    <p>None</p>
                 </div>
 
                 <div class="mb-3">
@@ -79,5 +77,8 @@
         </div>
     </div>
     
+    <script>
+        const serverChannels = JSON.parse('{{ channels | tojson }}');
+    </script>
     
 {% endblock %}

@@ -40,7 +40,7 @@ def index():
         return render_template("index.html")
 
     token = session.get("user_token")
-    user = getorpost_info("/users/@me", 0, access_token=token["access_token"])
+    user = getorpost_info("https://discord.com/api/v10/users/@me", 0, access_token=token["access_token"])
     session["username"] = user["username"]
 
     if user["avatar"]:
@@ -71,7 +71,7 @@ def login():
 @app.route("/servers")
 @login_required
 def servers():
-    guilds = getorpost_info("/users/@me/guilds", 0, access_token=session.get("access_token"))
+    guilds = getorpost_info("https://discord.com/api/v10/users/@me/guilds", 0, access_token=session.get("access_token"))
     
     for i in range(-len(guilds), 0):
         if not (int(guilds[i]['permissions']) & 0x20):
@@ -95,11 +95,9 @@ def message():
 def manage():
     guild_id = request.args.get("id")
     server_gen_data = request.args.get('sg')
-    
 
     if guild_id == None:
         return apology("Missing Guild Id", 400)
-    
 
 
     '''json_data = {
@@ -107,11 +105,24 @@ def manage():
         "type": 0
     }
 
-    getorpost_info(f"/guilds/{guild_id}/channels", 1, json=json_data, bot=True)'''
+    getorpost_info(f"https://discord.com/api/v10/guilds/{guild_id}/channels", 1, json=json_data, bot=True)'''
+
+    r = getorpost_info(f"https://discord.com/api/v10/guilds/{guild_id}/channels", 0, bot=True)
+
+    channels = []
+
+    for channel in r:
+        channels.append({"id":channel["id"],
+                         "type":channel["type"],
+                         "name":channel["name"],
+                         "parent_id":channel["parent_id"],
+                         "position":channel["position"],
+                         "permission_overwrites":channel["permission_overwrites"]
+                         })
 
 
-    
-    return render_template("manage.html")
+    print(channels)
+    return render_template("manage.html", channels=channels)
 
 
 @app.route("/callback")
@@ -149,18 +160,42 @@ def exchange_code(code, redirect_uri):
 
 
 def getorpost_info(path, method, json=None, access_token=None, bot=False):
-    headers = {'Authorization': ('Bearer ' + access_token) if bot == False else ('Bot ' + MY_TOKEN),
-               "Content-Type": "application/json" if method == 1 else None}
+    """
+    Get or post information to the specified API path. Set bot=True to use a bot token.
+
+    :param path: Full URL for the API endpoint.
+    :type path: str
+    :param method: HTTP method — 0 for GET, 1 for POST.
+    :type method: int
+    :param json: Optional JSON data for POST requests.
+    :type json: dict or None
+    :param access_token: User access token for authorization (ignored if bot=True).
+    :type access_token: str
+    :param bot: Set to True to use bot token from MY_TOKEN.
+    :type bot: bool
+    :raises: Returns apology message on HTTP or network error.
+    :return: JSON response from the API.
+    :rtype: dict
+    """
+
+    
+    auth_header = f"Bot {MY_TOKEN}" if bot else f"Bearer {access_token}"
+    headers = {'Authorization': auth_header}
+    
+    if method == 1:
+        headers["Content-Type"] = "application/json"
+
     try:
         if method == 0:
-            r = requests.get('https://discord.com/api/v10' + path, headers=headers)
+            r = requests.get(path, headers=headers)
         else:
-            r = requests.post('https://discord.com/api/v10' + path, headers=headers, json=json)
+            r = requests.post(path, headers=headers, json=json)
         r.raise_for_status()
+        return r.json()
+    
     except Exception as e:
-        return apology(f"Oh there is a problem: {e}", r.status_code)
-
-    return r.json()
+        status_code = r.status_code if "r" in locals() else 500
+        return apology(f"Oh there is a problem: {e}", status_code)
 
 
 @app.errorhandler(404)

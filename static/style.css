@@ -237,7 +237,7 @@ body {
     border-radius: 25px;
 }
 
-.categories, .channels {
+.categories, .channels, .permissions {
     margin: 0.25rem;
 }
 
